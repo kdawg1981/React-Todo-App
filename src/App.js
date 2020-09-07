@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Button } from '@material-ui/core';
 import './App.css';
 
 function App() {
+  // STATE refers to data that gets cleared when refreshed
+  const [todos, setTodos] = useState(['Play with Katie', 'Play with Julianna', 'Play with cats']);
+  const [input, setInput] = useState(['']);
+
+  // Added log to verify that it's working correctly.
+  console.log('This is working!!!!');
+
+  const addTodo = (event) => {
+    console.log('Button has been clicked!');
+    event.preventDefault(); // this will prevent react from refreshing
+    setTodos([...todos, input]);
+    setInput(''); 
+  }
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Welcome Kevin Morales!</h1>
+      <form>
+        <input value={input} onChange={event => setInput(event.target.value)}/>
+        {/* <button type="submit" onClick={addTodo}>Add Item</button> */}
+        <Button disabled={!input} type="submit" onClick={addTodo} variant="contained" color="Primary">Add Todo</Button>
+      </form>
+      
+
+      <ul>
+        {todos.map(todo =>  (
+          <li>{todo}</li>
+        ))}
+      </ul>
     </div>
   );
 }
