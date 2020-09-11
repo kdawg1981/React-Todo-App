@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core';
+import './Todo.css';
 
 
 function Todo(props) {
